@@ -3,6 +3,21 @@
 <%= render @horse_detail %>
 
 <div>
+  date: <%= @horse_detail.date %><br>
+  weather: <%= @horse_detail.weather %><br>
+  race_name: <%= @horse_detail.race_name %><br>
+  ranking: <%= @horse_detail.ranking %><br>
+  popularity: <%= @horse_detail.popularity %><br>
+  jockey: <%= @horse_detail.jockey %><br>
+  race_condition: <%= @horse_detail.race_condition %><br>
+  race_distance: <%= @horse_detail.race_distance %><br>
+  time: <%= @horse_detail.time %><br>
+  dressing_difference_time: <%= @horse_detail.dressing_difference_time %><br>
+  body_weight: <%= @horse_detail.body_weight %>
+</div>
+
+<div>
+  <%= link_to "horse", horse_path(@horse_detail.horse) %> |
   <%= link_to "Edit this horse detail", edit_horse_detail_path(@horse_detail) %> |
   <%= link_to "Back to horse details", horse_details_path %>
 

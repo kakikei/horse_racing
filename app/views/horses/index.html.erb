@@ -6,7 +6,7 @@
   <% @horses.each do |horse| %>
     <%= render horse %>
     <p>
-      <%= link_to "Show this horse", horse %>
+      <%= link_to "Show this #{horse.name}", horse %>
     </p>
   <% end %>
 </div>
