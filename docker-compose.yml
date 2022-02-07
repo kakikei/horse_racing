@@ -1,0 +1,40 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    command: bundle exec puma -C config/puma.rb
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/horse_racing
+      - sockets:/horse_racing/tmp/sockets
+    tty: true
+    depends_on:
+      - db
+  db:
+    image: postgres:14.1
+    ports:
+      - 5432:5432
+    volumes:
+      - dmap-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - sockets:/horse_racing/tmp/sockets
+    depends_on:
+      - app
+
+volumes:
+  dmap-data:
+    name: horse-racing-psql-data
+    driver: local
+  sockets:
